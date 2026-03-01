@@ -10,6 +10,7 @@ import kotlin.test.assertEquals
 class MarsRoverRemoteControllerShould {
     companion object {
         private const val NO_COMMAND = ""
+        private const val TURN_RIGHT_ONCE = "R"
         private const val INITIAL_POSITION = "0:0:N"
     }
 
@@ -31,4 +32,15 @@ class MarsRoverRemoteControllerShould {
         assertEquals(INITIAL_POSITION, position)
         verify { marsRover.doNothing() }
     }
+
+    @Test
+    fun `turn right once when R command is introduced`() {
+        every { marsRover.position() } returns "0:0:E"
+
+        val position = remoteController.execute(TURN_RIGHT_ONCE)
+
+        assertEquals("0:0:E", position)
+        verify { marsRover.turnRight() }
+    }
+
 }

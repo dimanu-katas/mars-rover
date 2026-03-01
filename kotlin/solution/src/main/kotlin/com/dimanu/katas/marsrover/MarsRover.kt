@@ -2,6 +2,6 @@ package com.dimanu.katas.marsrover
 
 interface MarsRover {
     fun position(): String
-
-    fun doNothing(): Unit = Unit
+    fun doNothing() = Unit
+    fun turnRight()
 }
