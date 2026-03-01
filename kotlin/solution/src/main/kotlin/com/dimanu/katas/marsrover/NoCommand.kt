@@ -1,8 +1,8 @@
 package com.dimanu.katas.marsrover
 
-class NoCommand(marsRover: MarsRover) {
+class NoCommand(private val marsRover: MarsRover) {
     fun execute() {
-        throw NotImplementedError()
+        marsRover.doNothing()
     }
 
 }

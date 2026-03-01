@@ -4,4 +4,6 @@ class MarsRover {
     fun position(): String {
         return ""
     }
+
+    fun doNothing(): Unit = Unit
 }

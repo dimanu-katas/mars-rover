@@ -15,6 +15,6 @@ class MarsRoverRemoteControllerShould {
 
         val position = remoteController.execute(NO_COMMAND)
 
-        assertEquals(position, "0:0:N")
+        assertEquals("0:0:N", position)
     }
 }
