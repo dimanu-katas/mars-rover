@@ -1,9 +1,7 @@
 package com.dimanu.katas.marsrover
 
-class MarsRover {
-    fun position(): String {
-        return ""
-    }
+interface MarsRover {
+    fun position(): String
 
     fun doNothing(): Unit = Unit
 }
