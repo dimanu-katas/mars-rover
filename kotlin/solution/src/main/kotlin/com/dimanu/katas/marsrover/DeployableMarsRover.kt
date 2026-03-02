@@ -3,7 +3,7 @@ package com.dimanu.katas.marsrover
 class DeployableMarsRover: MarsRover {
     companion object {
         fun deploy(): DeployableMarsRover {
-            TODO("Not yet implemented")
+            return DeployableMarsRover()
         }
     }
 
