@@ -8,5 +8,4 @@ class MarsRoverRemoteController(private val marsRover: MarsRover) {
         }
         return marsRover.position()
     }
-
 }

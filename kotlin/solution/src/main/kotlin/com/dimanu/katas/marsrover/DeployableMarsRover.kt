@@ -1,15 +1,11 @@
 package com.dimanu.katas.marsrover
 
-class DeployableMarsRover: MarsRover {
+class DeployableMarsRover : MarsRover {
     companion object {
-        fun deploy(): DeployableMarsRover {
-            return DeployableMarsRover()
-        }
+        fun deploy(): DeployableMarsRover = DeployableMarsRover()
     }
 
-    override fun position(): String {
-        return "0:0:N"
-    }
+    override fun position(): String = "0:0:N"
 
     override fun turnRight() {
         TODO("Not yet implemented")

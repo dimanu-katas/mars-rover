@@ -7,7 +7,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
-
 class MarsRoverRemoteControllerShould {
     companion object {
         private const val NO_COMMAND = ""
@@ -85,5 +84,4 @@ class MarsRoverRemoteControllerShould {
 
         assertFailsWith<InvalidMarsRoverCommand> { remoteController.execute("X") }
     }
-
 }
