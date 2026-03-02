@@ -5,4 +5,5 @@ interface MarsRover {
     fun doNothing() = Unit
     fun turnRight()
     fun turnLeft()
+    fun moveForward()
 }

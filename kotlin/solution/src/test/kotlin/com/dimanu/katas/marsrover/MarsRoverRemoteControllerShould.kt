@@ -7,11 +7,13 @@ import org.junit.jupiter.api.BeforeEach
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+
 class MarsRoverRemoteControllerShould {
     companion object {
         private const val NO_COMMAND = ""
         private const val TURN_RIGHT_ONCE = "R"
         private const val TURN_LEFT_ONCE = "L"
+        private const val MOVE_FORWARD_ONCE = "M"
         private const val INITIAL_POSITION = "0:0:N"
     }
 
@@ -52,6 +54,16 @@ class MarsRoverRemoteControllerShould {
 
         assertEquals("0:0:W", position)
         verify { marsRover.turnLeft() }
+    }
+
+    @Test
+    fun `move forward one step when M command is introduced`() {
+        every { marsRover.position() } returns "0:1:N"
+
+        val position = remoteController.execute(MOVE_FORWARD_ONCE)
+
+        assertEquals("0:1:N", position)
+        verify { marsRover.moveForward() }
     }
 
 }
