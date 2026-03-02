@@ -1,7 +1,6 @@
 package com.dimanu.katas.marsrover
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.mockkClass
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import kotlin.test.Test
@@ -33,7 +32,9 @@ class MarsRoverRemoteControllerShould {
         val position = remoteController.execute(NO_COMMAND)
 
         assertEquals(INITIAL_POSITION, position)
-        verify { marsRover.doNothing() }
+        verify(exactly = 0) { marsRover.turnLeft() }
+        verify(exactly = 0) { marsRover.turnRight() }
+        verify(exactly = 0) { marsRover.moveForward() }
     }
 
     @Test
