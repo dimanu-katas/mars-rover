@@ -5,6 +5,7 @@ import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 
 class MarsRoverRemoteControllerShould {
@@ -76,6 +77,13 @@ class MarsRoverRemoteControllerShould {
         assertEquals("0:1:E", position)
         verify { marsRover.turnRight() }
         verify { marsRover.moveForward() }
+    }
+
+    @Test
+    fun `not allow to execute invalid commands`() {
+        every { marsRover.position() } returns INITIAL_POSITION
+
+        assertFailsWith<InvalidMarsRoverCommand> { remoteController.execute("X") }
     }
 
 }

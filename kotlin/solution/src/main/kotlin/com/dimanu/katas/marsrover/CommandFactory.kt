@@ -7,7 +7,7 @@ class CommandFactory {
                 "R" -> TurnRightCommand(marsRover)
                 "L" -> TurnLeftCommand(marsRover)
                 "M" -> MoveForwardCommand(marsRover)
-                else -> NoCommand(marsRover)
+                else -> throw InvalidMarsRoverCommand(command)
             }
         }
     }
