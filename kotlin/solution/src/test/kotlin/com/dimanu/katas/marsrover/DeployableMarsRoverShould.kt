@@ -11,4 +11,13 @@ class DeployableMarsRoverShould {
 
         assertEquals("0:0:N", marsRover.position())
     }
+
+    @Test
+    fun `turn right once`() {
+        val marsRover = DeployableMarsRover.deploy()
+
+        marsRover.turnRight()
+
+        assertEquals("0:0:E", marsRover.position())
+    }
 }
