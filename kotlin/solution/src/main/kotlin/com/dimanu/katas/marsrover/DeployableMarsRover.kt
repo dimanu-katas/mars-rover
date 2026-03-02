@@ -8,7 +8,7 @@ class DeployableMarsRover: MarsRover {
     }
 
     override fun position(): String {
-        TODO("Not yet implemented")
+        return "0:0:N"
     }
 
     override fun turnRight() {
