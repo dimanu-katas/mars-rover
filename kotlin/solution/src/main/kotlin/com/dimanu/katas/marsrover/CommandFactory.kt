@@ -2,8 +2,11 @@ package com.dimanu.katas.marsrover
 
 class CommandFactory {
     companion object {
-        fun create(command: String, marsRover: MarsRover): Command {
-            return NoCommand(marsRover)
+        fun create(command: Char, marsRover: MarsRover): Command {
+            return when (command) {
+                'R' -> TurnRightCommand(marsRover)
+                else -> NoCommand(marsRover)
+            }
         }
     }
 }
