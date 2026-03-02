@@ -66,4 +66,15 @@ class MarsRoverRemoteControllerShould {
         verify { marsRover.moveForward() }
     }
 
+    @Test
+    fun `execute a sequence of commands`() {
+        every { marsRover.position() } returns "0:1:E"
+
+        val position = remoteController.execute("RM")
+
+        assertEquals("0:1:E", position)
+        verify { marsRover.turnRight() }
+        verify { marsRover.moveForward() }
+    }
+
 }
