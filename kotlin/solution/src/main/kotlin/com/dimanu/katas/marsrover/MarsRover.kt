@@ -4,4 +4,5 @@ interface MarsRover {
     fun position(): String
     fun doNothing() = Unit
     fun turnRight()
+    fun turnLeft()
 }

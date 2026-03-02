@@ -11,6 +11,7 @@ class MarsRoverRemoteControllerShould {
     companion object {
         private const val NO_COMMAND = ""
         private const val TURN_RIGHT_ONCE = "R"
+        private const val TURN_LEFT_ONCE = "L"
         private const val INITIAL_POSITION = "0:0:N"
     }
 
@@ -41,6 +42,16 @@ class MarsRoverRemoteControllerShould {
 
         assertEquals("0:0:E", position)
         verify { marsRover.turnRight() }
+    }
+
+    @Test
+    fun `turn left once when L command is introduced`() {
+        every { marsRover.position() } returns "0:0:W"
+
+        val position = remoteController.execute(TURN_LEFT_ONCE)
+
+        assertEquals("0:0:W", position)
+        verify { marsRover.turnLeft() }
     }
 
 }
