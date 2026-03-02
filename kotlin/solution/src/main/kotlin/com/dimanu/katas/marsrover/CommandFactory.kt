@@ -6,6 +6,7 @@ class CommandFactory {
             return when (command) {
                 "R" -> TurnRightCommand(marsRover)
                 "L" -> TurnLeftCommand(marsRover)
+                "M" -> MoveForwardCommand(marsRover)
                 else -> NoCommand(marsRover)
             }
         }
