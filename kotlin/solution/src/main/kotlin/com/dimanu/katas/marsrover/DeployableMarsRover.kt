@@ -5,10 +5,14 @@ class DeployableMarsRover : MarsRover {
         fun deploy(): DeployableMarsRover = DeployableMarsRover()
     }
 
-    override fun position(): String = "0:0:N"
+    private var orientation = "N"
+
+    override fun position(): String = "0:0:$orientation"
 
     override fun turnRight() {
-        TODO("Not yet implemented")
+        if (orientation == "N") {
+            orientation = "E"
+        }
     }
 
     override fun turnLeft() {
