@@ -16,6 +16,7 @@ kotlin {
 dependencies {
     testImplementation(kotlin("test"))
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.12.2")
     testImplementation("io.mockk:mockk:1.13.5")
 }
 
