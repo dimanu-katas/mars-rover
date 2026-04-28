@@ -40,6 +40,15 @@ class DeployableMarsRoverShould {
         assertEquals(expectedPosition, marsRover.position())
     }
 
+    @Test
+    fun `move forward`() {
+        val marsRover = DeployableMarsRover.deploy()
+
+        marsRover.moveForward()
+
+        assertEquals("1:0:N", marsRover.position())
+    }
+
     companion object {
         @JvmStatic
         fun turnRightCommands(): Stream<Arguments> = Stream.of(

@@ -6,8 +6,10 @@ class DeployableMarsRover : MarsRover {
     }
 
     private var orientation = Orientation.NORTH
+    private var coordinateX = 0
+    private var coordinateY = 0
 
-    override fun position(): String = "0:0:$orientation"
+    override fun position(): String = "$coordinateX:$coordinateY:$orientation"
 
     override fun turnRight() {
         orientation = orientation.turnRight()
@@ -18,6 +20,6 @@ class DeployableMarsRover : MarsRover {
     }
 
     override fun moveForward() {
-        TODO("Not yet implemented")
+        coordinateX = 1
     }
 }
