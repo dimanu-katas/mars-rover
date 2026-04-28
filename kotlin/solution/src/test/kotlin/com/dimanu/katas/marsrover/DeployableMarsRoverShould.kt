@@ -32,6 +32,9 @@ class DeployableMarsRoverShould {
         @JvmStatic
         fun turnRightCommands(): Stream<Arguments> = Stream.of(
             Arguments.of(1, "0:0:E"),
+            Arguments.of(2, "0:0:S"),
+            Arguments.of(3, "0:0:W"),
+            Arguments.of(4, "0:0:N"),
         )
     }
 }
