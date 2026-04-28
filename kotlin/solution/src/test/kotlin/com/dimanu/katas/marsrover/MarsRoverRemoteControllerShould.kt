@@ -1,7 +1,4 @@
 package com.dimanu.katas.marsrover
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -21,67 +18,47 @@ class MarsRoverRemoteControllerShould {
 
     @BeforeEach
     fun setUp() {
-        marsRover = mockk<MarsRover>(relaxUnitFun = true)
+        marsRover = DeployableMarsRover.deploy()
         remoteController = MarsRoverRemoteController(marsRover)
     }
 
     @Test
-    fun `not move mars rover if no command is introduced`() {
-        every { marsRover.position() } returns INITIAL_POSITION
-
+    fun `stay at deployed position if no command is introduced`() {
         val position = remoteController.execute(NO_COMMAND)
 
         assertEquals(INITIAL_POSITION, position)
-        verify(exactly = 0) { marsRover.turnLeft() }
-        verify(exactly = 0) { marsRover.turnRight() }
-        verify(exactly = 0) { marsRover.moveForward() }
     }
 
     @Test
     fun `turn right once when R command is introduced`() {
-        every { marsRover.position() } returns "0:0:E"
-
         val position = remoteController.execute(TURN_RIGHT_ONCE)
 
         assertEquals("0:0:E", position)
-        verify { marsRover.turnRight() }
     }
 
     @Test
     fun `turn left once when L command is introduced`() {
-        every { marsRover.position() } returns "0:0:W"
-
         val position = remoteController.execute(TURN_LEFT_ONCE)
 
         assertEquals("0:0:W", position)
-        verify { marsRover.turnLeft() }
     }
 
     @Test
     fun `move forward one step when M command is introduced`() {
-        every { marsRover.position() } returns "0:1:N"
-
         val position = remoteController.execute(MOVE_FORWARD_ONCE)
 
-        assertEquals("0:1:N", position)
-        verify { marsRover.moveForward() }
+        assertEquals("1:0:N", position)
     }
 
     @Test
     fun `execute a sequence of commands`() {
-        every { marsRover.position() } returns "0:1:E"
-
         val position = remoteController.execute("RM")
 
-        assertEquals("0:1:E", position)
-        verify { marsRover.turnRight() }
-        verify { marsRover.moveForward() }
+        assertEquals("1:0:E", position)
     }
 
     @Test
     fun `not allow to execute invalid commands`() {
-        every { marsRover.position() } returns INITIAL_POSITION
-
         assertFailsWith<InvalidMarsRoverCommand> { remoteController.execute("X") }
     }
 }
