@@ -28,6 +28,18 @@ class DeployableMarsRoverShould {
         assertEquals(expectedPosition, marsRover.position())
     }
 
+    @ParameterizedTest(name = "{0} turn -> {1}")
+    @MethodSource("turnLeftCommands")
+    fun `turn left`(numberOfLeftTurns: Int, expectedPosition: String) {
+        val marsRover = DeployableMarsRover.deploy()
+
+        repeat(numberOfLeftTurns) {
+            marsRover.turnLeft()
+        }
+
+        assertEquals(expectedPosition, marsRover.position())
+    }
+
     companion object {
         @JvmStatic
         fun turnRightCommands(): Stream<Arguments> = Stream.of(
@@ -35,6 +47,16 @@ class DeployableMarsRoverShould {
             Arguments.of(2, "0:0:S"),
             Arguments.of(3, "0:0:W"),
             Arguments.of(4, "0:0:N"),
+            Arguments.of(5, "0:0:E"),
+        )
+
+        @JvmStatic
+        fun turnLeftCommands(): Stream<Arguments> = Stream.of(
+            Arguments.of(1, "0:0:W"),
+            Arguments.of(2, "0:0:S"),
+            Arguments.of(3, "0:0:E"),
+            Arguments.of(4, "0:0:N"),
+            Arguments.of(5, "0:0:W"),
         )
     }
 }

@@ -19,7 +19,12 @@ class DeployableMarsRover : MarsRover {
     }
 
     override fun turnLeft() {
-        TODO("Not yet implemented")
+        when (orientation) {
+            "N" -> orientation = "W"
+            "E" -> orientation = "N"
+            "S" -> orientation = "E"
+            "W" -> orientation = "S"
+        }
     }
 
     override fun moveForward() {
