@@ -5,26 +5,16 @@ class DeployableMarsRover : MarsRover {
         fun deploy(): DeployableMarsRover = DeployableMarsRover()
     }
 
-    private var orientation = "N"
+    private var orientation = Orientation.NORTH
 
     override fun position(): String = "0:0:$orientation"
 
     override fun turnRight() {
-        when (orientation) {
-            "N" -> orientation = "E"
-            "E" -> orientation = "S"
-            "S" -> orientation = "W"
-            "W" -> orientation = "N"
-        }
+        orientation = orientation.turnRight()
     }
 
     override fun turnLeft() {
-        when (orientation) {
-            "N" -> orientation = "W"
-            "E" -> orientation = "N"
-            "S" -> orientation = "E"
-            "W" -> orientation = "S"
-        }
+        orientation = orientation.turnLeft()
     }
 
     override fun moveForward() {
