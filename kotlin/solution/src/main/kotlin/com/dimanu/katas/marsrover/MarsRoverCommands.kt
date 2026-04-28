@@ -1,5 +1,9 @@
 package com.dimanu.katas.marsrover
 
+interface Command {
+    fun execute()
+}
+
 class MoveForwardCommand(private val marsRover: MarsRover) : Command {
     override fun execute() {
         marsRover.moveForward()

@@ -9,7 +9,6 @@ import kotlin.test.assertFailsWith
 class MarsRoverRemoteControllerShould {
     companion object {
         private const val NO_COMMAND = ""
-        private const val TURN_LEFT_ONCE = "L"
         private const val MOVE_FORWARD_ONCE = "M"
         private const val INITIAL_POSITION = "0:0:N"
     }
@@ -19,7 +18,7 @@ class MarsRoverRemoteControllerShould {
 
     @BeforeEach
     fun setUp() {
-        marsRover = DeployableMarsRover.deploy()
+        marsRover = MarsRover.deploy()
         remoteController = MarsRoverRemoteController(marsRover)
     }
 
