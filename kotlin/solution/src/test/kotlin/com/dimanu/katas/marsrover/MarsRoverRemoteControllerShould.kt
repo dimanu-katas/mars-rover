@@ -1,5 +1,7 @@
 package com.dimanu.katas.marsrover
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -7,7 +9,6 @@ import kotlin.test.assertFailsWith
 class MarsRoverRemoteControllerShould {
     companion object {
         private const val NO_COMMAND = ""
-        private const val TURN_RIGHT_ONCE = "R"
         private const val TURN_LEFT_ONCE = "L"
         private const val MOVE_FORWARD_ONCE = "M"
         private const val INITIAL_POSITION = "0:0:N"
@@ -29,22 +30,34 @@ class MarsRoverRemoteControllerShould {
         assertEquals(INITIAL_POSITION, position)
     }
 
-    @Test
-    fun `turn right once when R command is introduced`() {
-        val position = remoteController.execute(TURN_RIGHT_ONCE)
+    @ParameterizedTest(name = "{0} turn -> {1}")
+    @CsvSource(
+        "R, 0:0:E",
+                "RR, 0:0:S",
+                "RRR, 0:0:W",
+                "RRRR, 0:0:N",
+    )
+    fun `turn right`(commandSequence: String, expectedPosition: String) {
+        val position = remoteController.execute(commandSequence)
 
-        assertEquals("0:0:E", position)
+        assertEquals(expectedPosition, position)
+    }
+
+    @ParameterizedTest(name = "{0} turn -> {1}")
+    @CsvSource(
+        "L, 0:0:W",
+        "LL, 0:0:S",
+        "LLL, 0:0:E",
+        "LLLL, 0:0:N",
+    )
+    fun `turn left`(commandSequence: String, expectedPosition: String) {
+        val position = remoteController.execute(commandSequence)
+
+        assertEquals(expectedPosition, position)
     }
 
     @Test
-    fun `turn left once when L command is introduced`() {
-        val position = remoteController.execute(TURN_LEFT_ONCE)
-
-        assertEquals("0:0:W", position)
-    }
-
-    @Test
-    fun `move forward one step when M command is introduced`() {
+    fun `move forward one step`() {
         val position = remoteController.execute(MOVE_FORWARD_ONCE)
 
         assertEquals("1:0:N", position)
