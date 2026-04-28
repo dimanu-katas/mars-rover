@@ -74,6 +74,7 @@ class DeployableMarsRoverShould {
         @JvmStatic
         fun moveForwardCommands(): Stream<Arguments> = Stream.of(
             Arguments.of(1, "1:0:N"),
+            Arguments.of(2, "2:0:N"),
         )
     }
 }

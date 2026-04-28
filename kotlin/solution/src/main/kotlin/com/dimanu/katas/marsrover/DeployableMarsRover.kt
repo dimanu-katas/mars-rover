@@ -20,6 +20,6 @@ class DeployableMarsRover : MarsRover {
     }
 
     override fun moveForward() {
-        coordinateX = 1
+        coordinateX += 1
     }
 }
