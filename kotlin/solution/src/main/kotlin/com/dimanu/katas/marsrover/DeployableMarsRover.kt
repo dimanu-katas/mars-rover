@@ -10,17 +10,11 @@ class DeployableMarsRover : MarsRover {
     override fun position(): String = "0:0:$orientation"
 
     override fun turnRight() {
-        if (orientation == "N") {
-            orientation = "E"
-        }
-        else if (orientation == "E") {
-            orientation = "S"
-        }
-        else if (orientation == "S") {
-            orientation = "W"
-        }
-        else if (orientation == "W") {
-            orientation = "N"
+        when (orientation) {
+            "N" -> orientation = "E"
+            "E" -> orientation = "S"
+            "S" -> orientation = "W"
+            "W" -> orientation = "N"
         }
     }
 
