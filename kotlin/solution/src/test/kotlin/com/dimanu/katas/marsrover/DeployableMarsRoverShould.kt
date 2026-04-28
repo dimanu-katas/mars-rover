@@ -40,13 +40,16 @@ class DeployableMarsRoverShould {
         assertEquals(expectedPosition, marsRover.position())
     }
 
-    @Test
-    fun `move forward`() {
+    @ParameterizedTest
+    @MethodSource("moveForwardCommands")
+    fun `move forward`(numberOfForwardSteps: Int, expectedPosition: String) {
         val marsRover = DeployableMarsRover.deploy()
 
-        marsRover.moveForward()
+        repeat(numberOfForwardSteps) {
+            marsRover.moveForward()
+        }
 
-        assertEquals("1:0:N", marsRover.position())
+        assertEquals(expectedPosition, marsRover.position())
     }
 
     companion object {
@@ -66,6 +69,11 @@ class DeployableMarsRoverShould {
             Arguments.of(3, "0:0:E"),
             Arguments.of(4, "0:0:N"),
             Arguments.of(5, "0:0:W"),
+        )
+
+        @JvmStatic
+        fun moveForwardCommands(): Stream<Arguments> = Stream.of(
+            Arguments.of(1, "1:0:N"),
         )
     }
 }
