@@ -32,9 +32,9 @@ class MarsRoverRemoteControllerShould {
     @ParameterizedTest(name = "{0} turn -> {1}")
     @CsvSource(
         "R, 0:0:E",
-                "RR, 0:0:S",
-                "RRR, 0:0:W",
-                "RRRR, 0:0:N",
+        "RR, 0:0:S",
+        "RRR, 0:0:W",
+        "RRRR, 0:0:N",
     )
     fun `turn right`(commandSequence: String, expectedPosition: String) {
         val position = remoteController.execute(commandSequence)
