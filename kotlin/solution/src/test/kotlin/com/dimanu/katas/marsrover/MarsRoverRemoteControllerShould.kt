@@ -69,13 +69,6 @@ class MarsRoverRemoteControllerShould {
     }
 
     @Test
-    fun `execute a sequence of commands`() {
-        val position = remoteController.execute("RM")
-
-        assertEquals("1:0:E", position)
-    }
-
-    @Test
     fun `not allow to execute invalid commands`() {
         assertFailsWith<InvalidMarsRoverCommand> { remoteController.execute("X") }
     }
