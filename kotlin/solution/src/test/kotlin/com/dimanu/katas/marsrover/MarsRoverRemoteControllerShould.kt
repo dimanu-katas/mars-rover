@@ -28,7 +28,7 @@ class MarsRoverRemoteControllerShould {
         assertEquals(INITIAL_POSITION, position)
     }
 
-    @ParameterizedTest(name = "{0} turn -> {1}")
+    @ParameterizedTest(name = "{0} -> {1}")
     @CsvSource(
         "R, 0:0:E",
         "RR, 0:0:S",
@@ -41,7 +41,7 @@ class MarsRoverRemoteControllerShould {
         assertEquals(expectedPosition, position)
     }
 
-    @ParameterizedTest(name = "{0} turn -> {1}")
+    @ParameterizedTest(name = "{0} -> {1}")
     @CsvSource(
         "L, 0:0:W",
         "LL, 0:0:S",
@@ -54,11 +54,12 @@ class MarsRoverRemoteControllerShould {
         assertEquals(expectedPosition, position)
     }
 
-    @ParameterizedTest(name = "{0} steps -> {1}")
+    @ParameterizedTest(name = "{0} -> {1}")
     @CsvSource(
         "M, 1:0:N",
         "MM, 2:0:N",
         "RM, 0:1:E",
+        "MMMRRM, 2:0:S"
     )
     fun `move forward`(stepsForward: String, expectedPosition: String) {
         val position = remoteController.execute(stepsForward)

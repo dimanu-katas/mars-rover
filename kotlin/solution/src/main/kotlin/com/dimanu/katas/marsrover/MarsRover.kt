@@ -26,5 +26,8 @@ class MarsRover {
         else if (orientation == Orientation.EAST) {
             coordinateY += 1
         }
+        else if (orientation == Orientation.SOUTH) {
+            coordinateX -= 1
+        }
     }
 }
