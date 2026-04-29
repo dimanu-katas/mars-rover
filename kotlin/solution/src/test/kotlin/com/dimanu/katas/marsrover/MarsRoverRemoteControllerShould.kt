@@ -9,7 +9,6 @@ import kotlin.test.assertFailsWith
 class MarsRoverRemoteControllerShould {
     companion object {
         private const val NO_COMMAND = ""
-        private const val MOVE_FORWARD_ONCE = "M"
         private const val INITIAL_POSITION = "0:0:N"
     }
 
@@ -36,8 +35,8 @@ class MarsRoverRemoteControllerShould {
         "RRR, 0:0:W",
         "RRRR, 0:0:N",
     )
-    fun `turn right`(commandSequence: String, expectedPosition: String) {
-        val position = remoteController.execute(commandSequence)
+    fun `turn right`(rightTurns: String, expectedPosition: String) {
+        val position = remoteController.execute(rightTurns)
 
         assertEquals(expectedPosition, position)
     }
@@ -49,17 +48,21 @@ class MarsRoverRemoteControllerShould {
         "LLL, 0:0:E",
         "LLLL, 0:0:N",
     )
-    fun `turn left`(commandSequence: String, expectedPosition: String) {
-        val position = remoteController.execute(commandSequence)
+    fun `turn left`(leftTurns: String, expectedPosition: String) {
+        val position = remoteController.execute(leftTurns)
 
         assertEquals(expectedPosition, position)
     }
 
-    @Test
-    fun `move forward one step`() {
-        val position = remoteController.execute(MOVE_FORWARD_ONCE)
+    @ParameterizedTest(name = "{0} steps -> {1}")
+    @CsvSource(
+        "M, 1:0:N",
+        "MM, 2:0:N",
+    )
+    fun `move forward`(stepsForward: String, expectedPosition: String) {
+        val position = remoteController.execute(stepsForward)
 
-        assertEquals("1:0:N", position)
+        assertEquals(expectedPosition, position)
     }
 
     @Test
