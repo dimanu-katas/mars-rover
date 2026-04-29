@@ -58,6 +58,7 @@ class MarsRoverRemoteControllerShould {
     @CsvSource(
         "M, 1:0:N",
         "MM, 2:0:N",
+        "RM, 0:1:E",
     )
     fun `move forward`(stepsForward: String, expectedPosition: String) {
         val position = remoteController.execute(stepsForward)

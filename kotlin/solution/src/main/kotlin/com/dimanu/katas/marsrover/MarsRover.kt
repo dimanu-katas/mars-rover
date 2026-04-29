@@ -20,6 +20,11 @@ class MarsRover {
     }
 
     fun moveForward() {
-        coordinateX += 1
+        if (orientation == Orientation.NORTH) {
+            coordinateX += 1
+        }
+        else if (orientation == Orientation.EAST) {
+            coordinateY += 1
+        }
     }
 }

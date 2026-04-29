@@ -33,4 +33,4 @@ class CommandFactory {
     }
 }
 
-class InvalidMarsRoverCommand(val command: String) : RuntimeException("Mars Rover cannot execute command: $command")
+class InvalidMarsRoverCommand(command: String) : RuntimeException("Mars Rover cannot execute command: $command")
