@@ -59,9 +59,10 @@ class MarsRoverRemoteControllerShould {
         "M, 1:0:N",
         "MM, 2:0:N",
         "RM, 0:1:E",
-        "MMMRRM, 2:0:S"
+        "MMMRRM, 2:0:S",
+        "RMMMLLM, 0:2:W"
     )
-    fun `move forward`(stepsForward: String, expectedPosition: String) {
+    fun `move forward in all directions`(stepsForward: String, expectedPosition: String) {
         val position = remoteController.execute(stepsForward)
 
         assertEquals(expectedPosition, position)
