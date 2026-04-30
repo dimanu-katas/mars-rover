@@ -16,8 +16,8 @@ class Plateau(private val width: Int, private val height: Int) {
     }
 
     private fun wrapOnEdge(position: Position): Position {
-        val x = if (position.x >= width) 0 else if (position.x < 0) width - 1 else position.x
-        val y = if (position.y >= height) 0 else if (position.y < 0) height -1 else position.y
+        val x = Math.floorMod(position.x, width)
+        val y = Math.floorMod(position.y, height)
         return Position(x, y)
     }
 }
