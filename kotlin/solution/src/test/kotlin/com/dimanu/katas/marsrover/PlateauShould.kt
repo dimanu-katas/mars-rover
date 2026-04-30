@@ -36,6 +36,19 @@ class PlateauShould {
         assertEquals(expectedPosition, movedPosition)
     }
 
+    @ParameterizedTest
+    @MethodSource("notDefaultPlateauWrapPositionTestData")
+    fun `wrap around when edge is reached on a plateau without default size`(position: Position, orientation: Orientation, expectedPosition: Position) {
+        val plateau = Plateau(width = 6, height = 6)
+
+        val movedPosition = plateau.nextPositionFor(
+            currentPosition = position,
+            currentOrientation = orientation
+        )
+
+        assertEquals(expectedPosition, movedPosition)
+    }
+
     companion object {
         private val INITIAL_POSITION = Position(0, 0)
 
@@ -57,6 +70,16 @@ class PlateauShould {
                 Arguments.of(Position(0, 0), Orientation.SOUTH, Position(9, 0)),
                 Arguments.of(Position(0, 0), Orientation.WEST, Position(0, 9)),
                 )
+        }
+
+        @JvmStatic
+        fun notDefaultPlateauWrapPositionTestData(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(Position(5, 0), Orientation.NORTH, Position(0, 0)),
+                Arguments.of(Position(0, 5), Orientation.EAST, Position(0, 0)),
+                Arguments.of(Position(0, 0), Orientation.SOUTH, Position(5, 0)),
+                Arguments.of(Position(0, 0), Orientation.WEST, Position(0, 5)),
+            )
         }
     }
 }
