@@ -6,10 +6,9 @@ class MarsRover {
     }
 
     private var orientation = Orientation.NORTH
-    private var coordinateX = 0
-    private var coordinateY = 0
+    private var position = Position(0, 0)
 
-    fun position(): String = "$coordinateX:$coordinateY:$orientation"
+    fun position(): String = "$position:$orientation"
 
     fun turnRight() {
         orientation = orientation.turnRight()
@@ -20,11 +19,11 @@ class MarsRover {
     }
 
     fun moveForward() {
-        when (orientation) {
-            Orientation.NORTH -> coordinateX += 1
-            Orientation.EAST -> coordinateY += 1
-            Orientation.SOUTH -> coordinateX -= 1
-            Orientation.WEST -> coordinateY -= 1
+        position = when (orientation) {
+            Orientation.NORTH -> position.up()
+            Orientation.EAST -> position.right()
+            Orientation.SOUTH -> position.down()
+            Orientation.WEST -> position.left()
         }
     }
 }
