@@ -53,6 +53,7 @@ class PlateauShould {
         fun plateauWrapPositionTestData(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(Position(9, 0), Orientation.NORTH, Position(0, 0)),
+                Arguments.of(Position(0, 9), Orientation.EAST, Position(0, 0)),
                 )
         }
     }
