@@ -4,6 +4,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
+import kotlin.test.Test
 import kotlin.test.assertEquals
 
 
@@ -12,6 +13,19 @@ class PlateauShould {
     @ParameterizedTest
     @MethodSource("plateauNextPositionTestData")
     fun `calculate next position for current position and orientation`(position: Position, orientation: Orientation, expectedPosition: Position) {
+        val plateau = Plateau.withDefaultSize()
+
+        val movedPosition = plateau.nextPositionFor(
+            currentPosition = position,
+            currentOrientation = orientation
+        )
+
+        assertEquals(expectedPosition, movedPosition)
+    }
+
+    @ParameterizedTest
+    @MethodSource("plateauWrapPositionTestData")
+    fun `wrap around when edge is reached`(position: Position, orientation: Orientation, expectedPosition: Position) {
         val plateau = Plateau.withDefaultSize()
 
         val movedPosition = plateau.nextPositionFor(
@@ -34,6 +48,12 @@ class PlateauShould {
                 Arguments.of(Position(0,1), Orientation.WEST, INITIAL_POSITION),
             )
         }
-    }
 
+        @JvmStatic
+        fun plateauWrapPositionTestData(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(Position(9, 0), Orientation.NORTH, Position(0, 0)),
+                )
+        }
     }
+}

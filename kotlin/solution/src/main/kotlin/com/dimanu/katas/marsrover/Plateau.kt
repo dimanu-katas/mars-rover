@@ -6,11 +6,18 @@ class Plateau(private val width: Int, private val height: Int) {
     }
 
     fun nextPositionFor(currentPosition: Position, currentOrientation: Orientation): Position {
-        return when (currentOrientation) {
+        val movedPosition = when (currentOrientation) {
             Orientation.NORTH -> currentPosition.up()
             Orientation.EAST -> currentPosition.right()
             Orientation.SOUTH -> currentPosition.down()
             Orientation.WEST -> currentPosition.left()
         }
+        return wrapOnEdge(movedPosition)
+    }
+
+    private fun wrapOnEdge(position: Position): Position {
+        val x = if (position.x >= width) 0 else if (position.x < 0) width - 1 else position.x
+        val y = position.y
+        return Position(x, y)
     }
 }
