@@ -69,6 +69,13 @@ class MarsRoverRemoteControllerShould {
     }
 
     @Test
+    fun `wrap around the plateau when reaches the edge`() {
+        val position = remoteController.execute("MMMMMMMMMM")
+
+        assertEquals("0:0:N", position)
+    }
+
+    @Test
     fun `not allow to execute invalid commands`() {
         assertFailsWith<InvalidMarsRoverCommand> { remoteController.execute("X") }
     }

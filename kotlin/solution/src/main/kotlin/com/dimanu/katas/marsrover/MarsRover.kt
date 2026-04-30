@@ -1,8 +1,8 @@
 package com.dimanu.katas.marsrover
 
-class MarsRover {
+class MarsRover(private val plateau: Plateau) {
     companion object {
-        fun deploy(): MarsRover = MarsRover()
+        fun deploy(): MarsRover = MarsRover(plateau = Plateau.withDefaultSize())
     }
 
     private var orientation = Orientation.NORTH
@@ -19,11 +19,9 @@ class MarsRover {
     }
 
     fun moveForward() {
-        position = when (orientation) {
-            Orientation.NORTH -> position.up()
-            Orientation.EAST -> position.right()
-            Orientation.SOUTH -> position.down()
-            Orientation.WEST -> position.left()
-        }
+        position = plateau.nextPositionFor(
+            currentPosition = position,
+            currentOrientation = orientation
+        )
     }
 }
