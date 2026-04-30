@@ -54,6 +54,8 @@ class PlateauShould {
             return Stream.of(
                 Arguments.of(Position(9, 0), Orientation.NORTH, Position(0, 0)),
                 Arguments.of(Position(0, 9), Orientation.EAST, Position(0, 0)),
+                Arguments.of(Position(0, 0), Orientation.SOUTH, Position(9, 0)),
+                Arguments.of(Position(0, 0), Orientation.WEST, Position(0, 9)),
                 )
         }
     }
