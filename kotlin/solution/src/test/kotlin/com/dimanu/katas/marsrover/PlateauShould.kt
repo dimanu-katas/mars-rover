@@ -44,30 +44,30 @@ class PlateauShould {
         @JvmStatic
         fun defaultSizePlateauNextPositionTestData(): Stream<Arguments> {
             return Stream.of(
-                Arguments.of(INITIAL_POSITION, Orientation.NORTH, Position(1,0)),
-                Arguments.of(INITIAL_POSITION, Orientation.EAST, Position(0,1)),
-                Arguments.of(Position(1,0), Orientation.SOUTH, INITIAL_POSITION),
-                Arguments.of(Position(0,1), Orientation.WEST, INITIAL_POSITION),
+                Arguments.of(INITIAL_POSITION, Orientation.NORTH, Position(0, 1)),
+                Arguments.of(INITIAL_POSITION, Orientation.EAST, Position(1, 0)),
+                Arguments.of(Position(0, 1), Orientation.SOUTH, INITIAL_POSITION),
+                Arguments.of(Position(1, 0), Orientation.WEST, INITIAL_POSITION),
             )
         }
 
         @JvmStatic
         fun defaultSizePlateauWrapPositionTestData(): Stream<Arguments> {
             return Stream.of(
-                Arguments.of(Position(DEFAULT_SIZE - 1, 0), Orientation.NORTH, INITIAL_POSITION),
-                Arguments.of(Position(0, DEFAULT_SIZE - 1), Orientation.EAST, INITIAL_POSITION),
-                Arguments.of(INITIAL_POSITION, Orientation.SOUTH, Position(DEFAULT_SIZE - 1, 0)),
-                Arguments.of(INITIAL_POSITION, Orientation.WEST, Position(0, DEFAULT_SIZE - 1)),
+                Arguments.of(Position(0, DEFAULT_SIZE - 1), Orientation.NORTH, INITIAL_POSITION),
+                Arguments.of(Position(DEFAULT_SIZE - 1, 0), Orientation.EAST, INITIAL_POSITION),
+                Arguments.of(INITIAL_POSITION, Orientation.SOUTH, Position(0, DEFAULT_SIZE - 1)),
+                Arguments.of(INITIAL_POSITION, Orientation.WEST, Position(DEFAULT_SIZE - 1, 0)),
                 )
         }
 
         @JvmStatic
         fun notDefaultSizePlateauWrapPositionTestData(): Stream<Arguments> {
             return Stream.of(
-                Arguments.of(Position(NOT_DEFAULT_SIZE - 1, 0), Orientation.NORTH, INITIAL_POSITION),
-                Arguments.of(Position(0, NOT_DEFAULT_SIZE - 1), Orientation.EAST, INITIAL_POSITION),
-                Arguments.of(INITIAL_POSITION, Orientation.SOUTH, Position(NOT_DEFAULT_SIZE - 1, 0)),
-                Arguments.of(INITIAL_POSITION, Orientation.WEST, Position(0, NOT_DEFAULT_SIZE - 1)),
+                Arguments.of(Position(0, NOT_DEFAULT_SIZE - 1), Orientation.NORTH, INITIAL_POSITION),
+                Arguments.of(Position(NOT_DEFAULT_SIZE - 1, 0), Orientation.EAST, INITIAL_POSITION),
+                Arguments.of(INITIAL_POSITION, Orientation.SOUTH, Position(0, NOT_DEFAULT_SIZE - 1)),
+                Arguments.of(INITIAL_POSITION, Orientation.WEST, Position(NOT_DEFAULT_SIZE - 1, 0)),
             )
         }
     }

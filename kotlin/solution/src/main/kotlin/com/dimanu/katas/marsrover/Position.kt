@@ -5,10 +5,10 @@ class Position(val x: Int, val y: Int) {
         private const val STEP_SIZE = 1
     }
 
-    fun up(): Position = Position(x = x + STEP_SIZE, y = y)
-    fun right(): Position = Position(x = x, y = y + STEP_SIZE)
-    fun down(): Position = Position(x = x - STEP_SIZE, y = y)
-    fun left(): Position = Position(x = x, y = y - STEP_SIZE)
+    fun up(): Position = Position(x = x, y = y + STEP_SIZE)
+    fun right(): Position = Position(x = x + STEP_SIZE, y = y)
+    fun down(): Position = Position(x = x, y = y - STEP_SIZE)
+    fun left(): Position = Position(x = x - STEP_SIZE, y = y)
 
     override fun toString(): String = "$x:$y"
 

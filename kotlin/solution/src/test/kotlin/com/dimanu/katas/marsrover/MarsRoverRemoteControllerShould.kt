@@ -56,11 +56,11 @@ class MarsRoverRemoteControllerShould {
 
     @ParameterizedTest(name = "{0} -> {1}")
     @CsvSource(
-        "M, 1:0:N",
-        "MM, 2:0:N",
-        "RM, 0:1:E",
-        "MMMRRM, 2:0:S",
-        "RMMMLLM, 0:2:W",
+        "M, 0:1:N",
+        "MM, 0:2:N",
+        "RM, 1:0:E",
+        "MMMRRM, 0:2:S",
+        "RMMMLLM, 2:0:W",
     )
     fun `move forward in all directions`(stepsForward: String, expectedPosition: String) {
         val position = remoteController.execute(stepsForward)
