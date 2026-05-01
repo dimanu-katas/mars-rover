@@ -2,7 +2,6 @@ package com.dimanu.katas.marsrover
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 import kotlin.test.Test
@@ -95,5 +94,18 @@ class MarsRoverRemoteControllerShould {
     @Test
     fun `not allow to execute invalid commands`() {
         assertFailsWith<InvalidMarsRoverCommand> { remoteController.execute("X") }
+    }
+
+    @ParameterizedTest(name = "{0} -> {1}")
+    @MethodSource("turnRightCommands")
+    @MethodSource("turnLeftCommands")
+    @MethodSource("moveCommands")
+    fun `process command sequence in a plateau of any size`(commandSequence: String, expectedPosition: String){
+        val plateau = Plateau(width = 10, height = 10)
+        val marsRoverRemoteController = MarsRoverRemoteController(marsRover = MarsRover.deployAt(plateau =  plateau))
+
+        val position = marsRoverRemoteController.execute(commandSequence)
+
+        assertEquals(expectedPosition, position)
     }
 }

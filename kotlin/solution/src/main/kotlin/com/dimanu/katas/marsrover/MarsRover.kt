@@ -3,6 +3,7 @@ package com.dimanu.katas.marsrover
 class MarsRover private constructor(private val plateau: Plateau) {
     companion object {
         fun deployAtDefaultPlateau(): MarsRover = MarsRover(plateau = Plateau.withDefaultSize())
+        fun deployAt(plateau: Plateau): MarsRover = MarsRover(plateau = plateau)
     }
 
     private var orientation = Orientation.NORTH
