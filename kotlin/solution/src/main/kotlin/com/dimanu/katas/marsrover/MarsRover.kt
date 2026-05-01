@@ -1,6 +1,6 @@
 package com.dimanu.katas.marsrover
 
-class MarsRover(private val plateau: Plateau) {
+class MarsRover private constructor(private val plateau: Plateau) {
     companion object {
         fun deployAtDefaultPlateau(): MarsRover = MarsRover(plateau = Plateau.withDefaultSize())
     }
