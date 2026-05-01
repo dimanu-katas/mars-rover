@@ -1,8 +1,11 @@
 package com.dimanu.katas.marsrover
 
-class Plateau(private val width: Int, private val height: Int) {
+class Plateau(
+    private val width: Int,
+    private val height: Int,
+    private val obstacles: Array<Position> = emptyArray()) {
     companion object {
-        fun withDefaultSize(): Plateau = Plateau(width = 10, height = 10)
+        fun withDefaultSize(obstacles: Array<Position> = emptyArray()): Plateau = Plateau(width = 10, height = 10, obstacles = obstacles)
     }
 
     fun nextPositionFor(currentPosition: Position, currentOrientation: Orientation): Position {
