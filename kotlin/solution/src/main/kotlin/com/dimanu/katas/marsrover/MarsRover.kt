@@ -22,7 +22,7 @@ class MarsRover private constructor(private val plateau: Plateau) {
     fun moveForward() {
         position = plateau.nextPositionFor(
             currentPosition = position,
-            currentOrientation = orientation
+            currentOrientation = orientation,
         )
     }
 }

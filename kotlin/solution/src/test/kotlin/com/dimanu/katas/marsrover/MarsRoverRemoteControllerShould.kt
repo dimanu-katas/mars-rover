@@ -14,34 +14,28 @@ class MarsRoverRemoteControllerShould {
         private const val INITIAL_POSITION = "0:0:N"
 
         @JvmStatic
-        fun turnRightCommands(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of("R", "0:0:E"),
-                Arguments.of("RR", "0:0:S"),
-                Arguments.of("RRR", "0:0:W"),
-                Arguments.of("RRRR", "0:0:N"),
-            )
-        }
+        fun turnRightCommands(): Stream<Arguments> = Stream.of(
+            Arguments.of("R", "0:0:E"),
+            Arguments.of("RR", "0:0:S"),
+            Arguments.of("RRR", "0:0:W"),
+            Arguments.of("RRRR", "0:0:N"),
+        )
 
         @JvmStatic
-        fun turnLeftCommands(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of("L", "0:0:W"),
-                Arguments.of("LL", "0:0:S"),
-                Arguments.of("LLL", "0:0:E"),
-                Arguments.of("LLLL", "0:0:N"),
-            )
-        }
+        fun turnLeftCommands(): Stream<Arguments> = Stream.of(
+            Arguments.of("L", "0:0:W"),
+            Arguments.of("LL", "0:0:S"),
+            Arguments.of("LLL", "0:0:E"),
+            Arguments.of("LLLL", "0:0:N"),
+        )
 
         @JvmStatic
-        fun moveCommands(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of("M", "0:1:N"),
-                Arguments.of("MM", "0:2:N"),
-                Arguments.of("RM", "1:0:E"),
-                Arguments.of("MMMRRM", "0:2:S"),
-            )
-        }
+        fun moveCommands(): Stream<Arguments> = Stream.of(
+            Arguments.of("M", "0:1:N"),
+            Arguments.of("MM", "0:2:N"),
+            Arguments.of("RM", "1:0:E"),
+            Arguments.of("MMMRRM", "0:2:S"),
+        )
     }
 
     private lateinit var marsRover: MarsRover
@@ -100,9 +94,9 @@ class MarsRoverRemoteControllerShould {
     @MethodSource("turnRightCommands")
     @MethodSource("turnLeftCommands")
     @MethodSource("moveCommands")
-    fun `process command sequence in a plateau of any size`(commandSequence: String, expectedPosition: String){
+    fun `process command sequence in a plateau of any size`(commandSequence: String, expectedPosition: String) {
         val plateau = Plateau(width = 10, height = 10)
-        val marsRoverRemoteController = MarsRoverRemoteController(marsRover = MarsRover.deployAt(plateau =  plateau))
+        val marsRoverRemoteController = MarsRoverRemoteController(marsRover = MarsRover.deployAt(plateau = plateau))
 
         val position = marsRoverRemoteController.execute(commandSequence)
 

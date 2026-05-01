@@ -3,7 +3,8 @@ package com.dimanu.katas.marsrover
 class Plateau(
     private val width: Int,
     private val height: Int,
-    private val obstacles: Array<Position> = emptyArray()) {
+    private val obstacles: Array<Position> = emptyArray(),
+) {
     companion object {
         fun withDefaultSize(obstacles: Array<Position> = emptyArray()): Plateau = Plateau(width = 10, height = 10, obstacles = obstacles)
     }

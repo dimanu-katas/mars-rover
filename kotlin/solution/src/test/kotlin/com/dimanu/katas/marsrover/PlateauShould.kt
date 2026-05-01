@@ -6,7 +6,6 @@ import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 import kotlin.test.assertEquals
 
-
 class PlateauShould {
 
     @ParameterizedTest
@@ -17,7 +16,7 @@ class PlateauShould {
 
         val movedPosition = plateau.nextPositionFor(
             currentPosition = position,
-            currentOrientation = orientation
+            currentOrientation = orientation,
         )
 
         assertEquals(expectedPosition, movedPosition)
@@ -30,7 +29,7 @@ class PlateauShould {
 
         val movedPosition = plateau.nextPositionFor(
             currentPosition = position,
-            currentOrientation = orientation
+            currentOrientation = orientation,
         )
 
         assertEquals(expectedPosition, movedPosition)
@@ -42,33 +41,27 @@ class PlateauShould {
         private const val NOT_DEFAULT_SIZE = 6
 
         @JvmStatic
-        fun defaultSizePlateauNextPositionTestData(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of(INITIAL_POSITION, Orientation.NORTH, Position(0, 1)),
-                Arguments.of(INITIAL_POSITION, Orientation.EAST, Position(1, 0)),
-                Arguments.of(Position(0, 1), Orientation.SOUTH, INITIAL_POSITION),
-                Arguments.of(Position(1, 0), Orientation.WEST, INITIAL_POSITION),
-            )
-        }
+        fun defaultSizePlateauNextPositionTestData(): Stream<Arguments> = Stream.of(
+            Arguments.of(INITIAL_POSITION, Orientation.NORTH, Position(0, 1)),
+            Arguments.of(INITIAL_POSITION, Orientation.EAST, Position(1, 0)),
+            Arguments.of(Position(0, 1), Orientation.SOUTH, INITIAL_POSITION),
+            Arguments.of(Position(1, 0), Orientation.WEST, INITIAL_POSITION),
+        )
 
         @JvmStatic
-        fun defaultSizePlateauWrapPositionTestData(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of(Position(0, DEFAULT_SIZE - 1), Orientation.NORTH, INITIAL_POSITION),
-                Arguments.of(Position(DEFAULT_SIZE - 1, 0), Orientation.EAST, INITIAL_POSITION),
-                Arguments.of(INITIAL_POSITION, Orientation.SOUTH, Position(0, DEFAULT_SIZE - 1)),
-                Arguments.of(INITIAL_POSITION, Orientation.WEST, Position(DEFAULT_SIZE - 1, 0)),
-                )
-        }
+        fun defaultSizePlateauWrapPositionTestData(): Stream<Arguments> = Stream.of(
+            Arguments.of(Position(0, DEFAULT_SIZE - 1), Orientation.NORTH, INITIAL_POSITION),
+            Arguments.of(Position(DEFAULT_SIZE - 1, 0), Orientation.EAST, INITIAL_POSITION),
+            Arguments.of(INITIAL_POSITION, Orientation.SOUTH, Position(0, DEFAULT_SIZE - 1)),
+            Arguments.of(INITIAL_POSITION, Orientation.WEST, Position(DEFAULT_SIZE - 1, 0)),
+        )
 
         @JvmStatic
-        fun notDefaultSizePlateauWrapPositionTestData(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of(Position(0, NOT_DEFAULT_SIZE - 1), Orientation.NORTH, INITIAL_POSITION),
-                Arguments.of(Position(NOT_DEFAULT_SIZE - 1, 0), Orientation.EAST, INITIAL_POSITION),
-                Arguments.of(INITIAL_POSITION, Orientation.SOUTH, Position(0, NOT_DEFAULT_SIZE - 1)),
-                Arguments.of(INITIAL_POSITION, Orientation.WEST, Position(NOT_DEFAULT_SIZE - 1, 0)),
-            )
-        }
+        fun notDefaultSizePlateauWrapPositionTestData(): Stream<Arguments> = Stream.of(
+            Arguments.of(Position(0, NOT_DEFAULT_SIZE - 1), Orientation.NORTH, INITIAL_POSITION),
+            Arguments.of(Position(NOT_DEFAULT_SIZE - 1, 0), Orientation.EAST, INITIAL_POSITION),
+            Arguments.of(INITIAL_POSITION, Orientation.SOUTH, Position(0, NOT_DEFAULT_SIZE - 1)),
+            Arguments.of(INITIAL_POSITION, Orientation.WEST, Position(NOT_DEFAULT_SIZE - 1, 0)),
+        )
     }
 }
