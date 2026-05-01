@@ -17,7 +17,7 @@ class MarsRoverRemoteControllerShould {
 
     @BeforeEach
     fun setUp() {
-        marsRover = MarsRover.deployAtDefaultGrid()
+        marsRover = MarsRover.deployAtDefaultPlateau()
         remoteController = MarsRoverRemoteController(marsRover)
     }
 
