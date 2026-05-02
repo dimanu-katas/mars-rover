@@ -1,6 +1,5 @@
 package com.dimanu.katas.marsrover
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -105,7 +104,7 @@ class MarsRoverRemoteControllerShould {
     }
 
     @Test
-    fun `stop when finds an obstacle and cannot continue`(){
+    fun `stop when finds an obstacle and cannot continue`() {
         val plateauWithObstacle = Plateau.withDefaultSize(obstacles = arrayOf(Position(0, 3)))
         val remoteController = MarsRoverRemoteController(marsRover = MarsRover.deployAt(plateau = plateauWithObstacle))
 
@@ -115,7 +114,7 @@ class MarsRoverRemoteControllerShould {
     }
 
     @Test
-    fun `keep moving when next commands avoids obstacle and notify obstacle`(){
+    fun `keep moving when next commands avoids obstacle and notify obstacle`() {
         val plateauWithObstacle = Plateau.withDefaultSize(obstacles = arrayOf(Position(2, 2)))
         val remoteController = MarsRoverRemoteController(marsRover = MarsRover.deployAt(plateau = plateauWithObstacle))
 
@@ -125,7 +124,7 @@ class MarsRoverRemoteControllerShould {
     }
 
     @Test
-    fun `not wrap on edge when there is an obstacle at the other side of the plateau`(){
+    fun `not wrap on edge when there is an obstacle at the other side of the plateau`() {
         val plateauWithObstacle = Plateau.withDefaultSize(obstacles = arrayOf(Position(9, 2)))
         val remoteController = MarsRoverRemoteController(marsRover = MarsRover.deployAt(plateau = plateauWithObstacle))
 

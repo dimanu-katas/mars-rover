@@ -38,7 +38,7 @@ class PlateauShould {
     }
 
     @Test
-    fun `detect when there is an obstacle`(){
+    fun `detect when there is an obstacle`() {
         val plateau = Plateau.withDefaultSize(obstacles = arrayOf(Position(0, 1)))
 
         assertTrue { plateau.hasObstacleAt(Position(0, 1)) }
