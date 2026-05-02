@@ -113,4 +113,24 @@ class MarsRoverRemoteControllerShould {
 
         assertEquals("O:0:2:N", position)
     }
+
+    @Test
+    fun `keep moving when next commands avoids obstacle and notify obstacle`(){
+        val plateauWithObstacle = Plateau.withDefaultSize(obstacles = arrayOf(Position(2, 2)))
+        val remoteController = MarsRoverRemoteController(marsRover = MarsRover.deployAt(plateau = plateauWithObstacle))
+
+        val position = remoteController.execute("RMMLMMRM")
+
+        assertEquals("O:3:1:E", position)
+    }
+
+    @Test
+    fun `not wrap on edge when there is an obstacle at the other side of the plateau`(){
+        val plateauWithObstacle = Plateau.withDefaultSize(obstacles = arrayOf(Position(9, 2)))
+        val remoteController = MarsRoverRemoteController(marsRover = MarsRover.deployAt(plateau = plateauWithObstacle))
+
+        val position = remoteController.execute("MMLM")
+
+        assertEquals("O:0:2:W", position)
+    }
 }
