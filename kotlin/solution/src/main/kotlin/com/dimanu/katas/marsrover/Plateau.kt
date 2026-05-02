@@ -26,6 +26,11 @@ class Plateau(
     }
 
     fun hasObstacleAt(position: Position): Boolean {
+        for (obstacle in obstacles) {
+            if (position == obstacle) {
+                return true
+            }
+        }
         return false
     }
 }

@@ -4,7 +4,9 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
+import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class PlateauShould {
 
@@ -33,6 +35,13 @@ class PlateauShould {
         )
 
         assertEquals(expectedPosition, movedPosition)
+    }
+
+    @Test
+    fun `detect when there is an obstacle`(){
+        val plateau = Plateau.withDefaultSize(obstacles = arrayOf(Position(0, 1)))
+
+        assertTrue { plateau.hasObstacleAt(Position(0, 1)) }
     }
 
     companion object {
