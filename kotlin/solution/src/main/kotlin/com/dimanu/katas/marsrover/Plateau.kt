@@ -24,4 +24,8 @@ class Plateau(
         val y = Math.floorMod(position.y, height)
         return Position(x, y)
     }
+
+    fun hasObstacleAt(position: Position): Boolean {
+        return false
+    }
 }

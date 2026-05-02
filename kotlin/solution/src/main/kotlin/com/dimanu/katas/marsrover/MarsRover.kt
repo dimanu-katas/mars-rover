@@ -6,8 +6,9 @@ class MarsRover private constructor(private val plateau: Plateau) {
         fun deployAt(plateau: Plateau): MarsRover = MarsRover(plateau = plateau)
     }
 
-    private var orientation = Orientation.NORTH
-    private var position = Position(0, 0)
+    private var orientation: Orientation = Orientation.NORTH
+    private var position: Position = Position(0, 0)
+    private var hasEncounteredAnObstacle: Boolean = false
 
     fun position(): String = "$position:$orientation"
 
@@ -20,9 +21,16 @@ class MarsRover private constructor(private val plateau: Plateau) {
     }
 
     fun moveForward() {
-        position = plateau.nextPositionFor(
+        val nextPosition = plateau.nextPositionFor(
             currentPosition = position,
             currentOrientation = orientation,
         )
+
+        if (plateau.hasObstacleAt(nextPosition)) {
+            hasEncounteredAnObstacle = true
+            return
+        }
+
+        position = nextPosition
     }
 }
