@@ -25,12 +25,5 @@ class Plateau(
         return Position(x, y)
     }
 
-    fun hasObstacleAt(position: Position): Boolean {
-        for (obstacle in obstacles) {
-            if (position == obstacle) {
-                return true
-            }
-        }
-        return false
-    }
+    fun hasObstacleAt(position: Position): Boolean = obstacles.contains(position)
 }
