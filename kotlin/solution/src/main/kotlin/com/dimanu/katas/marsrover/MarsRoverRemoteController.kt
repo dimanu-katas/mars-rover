@@ -6,6 +6,6 @@ class MarsRoverRemoteController(private val marsRover: MarsRover) {
             val command = CommandFactory.create(it.toString(), marsRover)
             command.execute()
         }
-        return marsRover.position()
+        return marsRover.status()
     }
 }

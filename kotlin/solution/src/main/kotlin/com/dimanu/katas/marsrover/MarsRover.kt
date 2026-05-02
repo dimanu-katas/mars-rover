@@ -10,7 +10,7 @@ class MarsRover private constructor(private val plateau: Plateau) {
     private var position: Position = Position(0, 0)
     private var hasEncounteredAnObstacle: Boolean = false
 
-    fun position(): String = if (hasEncounteredAnObstacle) "O:$position:$orientation" else "$position:$orientation"
+    fun status(): String = if (hasEncounteredAnObstacle) "O:$position:$orientation" else "$position:$orientation"
 
     fun turnRight() {
         orientation = orientation.turnRight()

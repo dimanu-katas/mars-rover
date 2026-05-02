@@ -11,7 +11,7 @@ import kotlin.test.assertFailsWith
 class MarsRoverRemoteControllerShould {
     companion object {
         private const val NO_COMMAND = ""
-        private const val INITIAL_POSITION = "0:0:N"
+        private const val INITIAL_STATUS = "0:0:N"
 
         @JvmStatic
         fun turnRightCommands(): Stream<Arguments> = Stream.of(
@@ -49,40 +49,40 @@ class MarsRoverRemoteControllerShould {
 
     @Test
     fun `stay at deployed position if no command is introduced`() {
-        val position = remoteController.execute(NO_COMMAND)
+        val status = remoteController.execute(NO_COMMAND)
 
-        assertEquals(INITIAL_POSITION, position)
+        assertEquals(INITIAL_STATUS, status)
     }
 
     @ParameterizedTest(name = "{0} -> {1}")
     @MethodSource("turnRightCommands")
-    fun `turn right`(rightTurns: String, expectedPosition: String) {
-        val position = remoteController.execute(rightTurns)
+    fun `turn right`(rightTurns: String, expectedStatus: String) {
+        val status = remoteController.execute(rightTurns)
 
-        assertEquals(expectedPosition, position)
+        assertEquals(expectedStatus, status)
     }
 
     @ParameterizedTest(name = "{0} -> {1}")
     @MethodSource("turnLeftCommands")
-    fun `turn left`(leftTurns: String, expectedPosition: String) {
-        val position = remoteController.execute(leftTurns)
+    fun `turn left`(leftTurns: String, expectedStatus: String) {
+        val status = remoteController.execute(leftTurns)
 
-        assertEquals(expectedPosition, position)
+        assertEquals(expectedStatus, status)
     }
 
     @ParameterizedTest(name = "{0} -> {1}")
     @MethodSource("moveCommands")
-    fun `move forward in all directions`(stepsForward: String, expectedPosition: String) {
-        val position = remoteController.execute(stepsForward)
+    fun `move forward in all directions`(stepsForward: String, expectedStatus: String) {
+        val status = remoteController.execute(stepsForward)
 
-        assertEquals(expectedPosition, position)
+        assertEquals(expectedStatus, status)
     }
 
     @Test
     fun `wrap around the plateau when reaches the edge`() {
-        val position = remoteController.execute("MMMMMMMMMM")
+        val status = remoteController.execute("MMMMMMMMMM")
 
-        assertEquals("0:0:N", position)
+        assertEquals("0:0:N", status)
     }
 
     @Test
@@ -94,13 +94,13 @@ class MarsRoverRemoteControllerShould {
     @MethodSource("turnRightCommands")
     @MethodSource("turnLeftCommands")
     @MethodSource("moveCommands")
-    fun `process command sequence in a plateau of any size`(commandSequence: String, expectedPosition: String) {
+    fun `process command sequence in a plateau of any size`(commandSequence: String, expectedStatus: String) {
         val plateau = Plateau(width = 10, height = 10)
         val marsRoverRemoteController = MarsRoverRemoteController(marsRover = MarsRover.deployAt(plateau = plateau))
 
-        val position = marsRoverRemoteController.execute(commandSequence)
+        val status = marsRoverRemoteController.execute(commandSequence)
 
-        assertEquals(expectedPosition, position)
+        assertEquals(expectedStatus, status)
     }
 
     @Test
@@ -108,9 +108,9 @@ class MarsRoverRemoteControllerShould {
         val plateauWithObstacle = Plateau.withDefaultSize(obstacles = arrayOf(Position(0, 3)))
         val remoteController = MarsRoverRemoteController(marsRover = MarsRover.deployAt(plateau = plateauWithObstacle))
 
-        val position = remoteController.execute("MMMM")
+        val status = remoteController.execute("MMMM")
 
-        assertEquals("O:0:2:N", position)
+        assertEquals("O:0:2:N", status)
     }
 
     @Test
@@ -118,9 +118,9 @@ class MarsRoverRemoteControllerShould {
         val plateauWithObstacle = Plateau.withDefaultSize(obstacles = arrayOf(Position(2, 2)))
         val remoteController = MarsRoverRemoteController(marsRover = MarsRover.deployAt(plateau = plateauWithObstacle))
 
-        val position = remoteController.execute("RMMLMMRM")
+        val status = remoteController.execute("RMMLMMRM")
 
-        assertEquals("O:3:1:E", position)
+        assertEquals("O:3:1:E", status)
     }
 
     @Test
@@ -128,8 +128,8 @@ class MarsRoverRemoteControllerShould {
         val plateauWithObstacle = Plateau.withDefaultSize(obstacles = arrayOf(Position(9, 2)))
         val remoteController = MarsRoverRemoteController(marsRover = MarsRover.deployAt(plateau = plateauWithObstacle))
 
-        val position = remoteController.execute("MMLM")
+        val status = remoteController.execute("MMLM")
 
-        assertEquals("O:0:2:W", position)
+        assertEquals("O:0:2:W", status)
     }
 }
